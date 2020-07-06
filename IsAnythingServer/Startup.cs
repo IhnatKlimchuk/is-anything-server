@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json;
 
 namespace IsAnythingServer
 {
@@ -19,7 +20,12 @@ namespace IsAnythingServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IDataStorage, InMemoryDataStorage>();
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddJsonOptions(c => 
+                {
+                    c.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                });
             services.AddSwaggerGen();
         }
 
@@ -29,18 +35,20 @@ namespace IsAnythingServer
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHttpsRedirection();
+            }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => 
+            app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Is anything api V1");
             });
 
-            app.UseHttpsRedirection();
-
+            
             app.UseRouting();
 
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

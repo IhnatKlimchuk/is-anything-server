@@ -4,7 +4,13 @@ namespace IsAnythingServer.Services
 {
     public sealed class InMemoryDataStorage : IDataStorage
     {
-        private ConcurrentDictionary<(string subject, string predicate), bool> _storage = new ConcurrentDictionary<(string subject, string predicate), bool>();
+        private readonly ConcurrentDictionary<(string subject, string predicate), bool> _storage;
+
+        public InMemoryDataStorage()
+        {
+            _storage = new ConcurrentDictionary<(string subject, string predicate), bool>();
+        }
+        
         public bool? ReadRecord(string subject, string predicate)
         {
             if (_storage.TryGetValue((subject, predicate), out bool result))

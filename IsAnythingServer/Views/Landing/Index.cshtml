@@ -1,0 +1,27 @@
+﻿<div class="text-center">
+    <h1 class="display-4">Check anything!</h1>
+    <p style="font-size: 2.0em;">
+        <span id="typed"></span>
+    </p>
+</div>
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h2 class="jumbotron-heading">Interested? Check it out!</h2>
+        <p class="lead text-muted">Check value by asking: "Is {subject} {predicate}?"</p>
+    </div>
+    <div class="container row" style="margin: 0; padding-bottom: 20px">
+        <div class="col-md-6 offset-md-3 pb-3">
+            <input style="text-align: center" type="text" class="form-control" placeholder="Is this pigeon?">
+        </div>
+        <div class="col-md-4 offset-md-4">
+            <button type="button" class="btn btn-primary">Check</button>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="jumbotron-heading">Outdated? Disagree?</h2>
+        <p>
+            <a class="btn btn-primary my-2" asp-controller="Landing" asp-action="Write">Write value</a>
+        </p>
+    </div>
+</section>

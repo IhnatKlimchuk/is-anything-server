@@ -21,7 +21,7 @@ namespace IsAnythingServer
         {
             services.AddSingleton<IDataStorage, InMemoryDataStorage>();
             services
-                .AddControllers()
+                .AddControllersWithViews()
                 .AddJsonOptions(c => 
                 {
                     c.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
@@ -40,9 +40,12 @@ namespace IsAnythingServer
                 app.UseHttpsRedirection();
             }
 
+            app.UseStaticFiles();
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
+                c.InjectStylesheet("/css/swaggerui.css");
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Is anything api V1");
             });
 
@@ -52,7 +55,9 @@ namespace IsAnythingServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                     name: "default",
+                     pattern: "{controller=Landing}/{action=Index}/{id?}");
             });
         }
     }

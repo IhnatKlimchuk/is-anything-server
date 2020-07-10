@@ -2,24 +2,17 @@
 
 namespace IsAnythingServer.Controllers.Landing
 {
-    [Route("/")]
     [ApiExplorerSettings(IgnoreApi = true)]
-    public class LandingController : ControllerBase
+    public class LandingController : Controller
     {
-        [HttpGet]
-        public ContentResult Index()
+        public IActionResult Index()
         {
-            return base.Content(
-                content:
-                "<!DOCTYPE html>" +
-                "<html lang = \"en\">" +
-                "<head>" +
-                "<meta charset = \"utf-8\"/>" +
-                "<title>Index</title>" +
-                "</head>" +
-                "<body>Index</body>" +
-                "</html>",
-                contentType: "text/html");
+            return View();
+        }
+
+        public IActionResult Write()
+        {
+            return View();
         }
     }
 }

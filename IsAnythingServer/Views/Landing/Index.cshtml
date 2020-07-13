@@ -10,18 +10,19 @@
         <h2 class="jumbotron-heading">Interested? Check it out!</h2>
         <p class="lead text-muted">Check value by asking: "Is {subject} {predicate}?"</p>
     </div>
-    <div class="container row" style="margin: 0; padding-bottom: 20px">
-        <div class="col-md-6 offset-md-3 pb-3">
-            <input style="text-align: center" type="text" class="form-control" placeholder="Is this pigeon?">
+    <form id="read-form" autocomplete="off">
+        <div class="container row" style="margin: 0; padding-bottom: 20px">
+            <div class="col-md-6 offset-md-3 pb-3">
+                <input style="text-align: center" id="read-input" type="text" class="form-control" placeholder="Is this pigeon?">
+                <div id="read-feedback" class="valid-feedback"></div>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <button id="read-submit" type="submit" class="btn btn-primary">Check</button>
+            </div>
         </div>
-        <div class="col-md-4 offset-md-4">
-            <button type="button" class="btn btn-primary">Check</button>
-        </div>
-    </div>
+    </form>
     <div class="container">
-        <h2 class="jumbotron-heading">Outdated? Disagree?</h2>
-        <p>
-            <a class="btn btn-primary my-2" asp-controller="Landing" asp-action="Write">Write value</a>
-        </p>
+        <h2 id="read-result" class="jumbotron-heading" hidden></h2>
+        <p id="override-text" class="lead text-muted" hidden>Outdated? Disagree? <a id="override-link" class="btn btn-primary my-2" asp-controller="Landing" asp-action="Write">Override!</a></p>
     </div>
 </section>

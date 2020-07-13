@@ -1,18 +1,42 @@
 ﻿<div class="text-center">
-    <h1 class="display-4">Write value</h1>
+    <h1 class="display-4">Write anything!</h1>
+    <p style="font-size: 2.0em;">
+        <span id="typed"></span>
+    </p>
 </div>
 
 <section class="jumbotron text-center">
     <div class="container">
-        <h2 class="jumbotron-heading">Override value</h2>
-        <p class="lead text-muted">Check value by asking: "Is {subject} {predicate}?"</p>
+        <h2 class="jumbotron-heading">Override value!</h2>
+        <p class="lead text-muted">Define subject and predicate by: "Is {subject} {predicate}?"</p>
     </div>
-    <div class="container row" style="margin: 0; padding-bottom: 20px">
-        <div class="col-md-6 offset-md-3 pb-3">
-            <input style="text-align: center" type="text" class="form-control" placeholder="Is this pigeon?">
+    <form id="write-form" autocomplete="off">
+        <div class="container row" style="margin: 0; padding-bottom: 20px">
+            <div class="col-md-6 offset-md-1 pb-3">
+                @if (string.IsNullOrWhiteSpace((string)ViewData["subject"]) || string.IsNullOrWhiteSpace((string)ViewData["predicate"]))
+                {
+                    <input style="text-align: center" id="subject-predicate-input" type="text" class="form-control" placeholder="Is this pigeon?">
+                }
+                else
+                {
+                    <input style="text-align: center" id="subject-predicate-input" type="text" class="form-control is-valid" placeholder="Is this pigeon?" value="Is @ViewData["subject"] @ViewData["predicate"]?">
+                }
+                <div id="subject-predicate-feedback" class="valid-feedback"></div>
+            </div>
+            <div class="col-md-4 pb-2">
+                <select class="custom-select d-block w-100" id="value-input">
+                    <option value="">Choose value...</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <button id="write-submit" type="submit" class="btn btn-primary">Write</button>
+            </div>
         </div>
-        <div class="col-md-4 offset-md-4">
-            <button type="button" class="btn btn-primary">Write</button>
-        </div>
+    </form>
+    <div class="container">
+        <h2 id="write-result" class="jumbotron-heading" hidden></h2>
+        <p id="result-text" class="lead text-muted" hidden>Read another value? <a id="result-link" class="btn btn-primary my-2" asp-controller="Landing" asp-action="Index">Read now!</a></p>
     </div>
 </section>

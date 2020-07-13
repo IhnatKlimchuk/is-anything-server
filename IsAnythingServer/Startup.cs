@@ -26,6 +26,7 @@ namespace IsAnythingServer
                 {
                     c.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                 });
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddSwaggerGen();
         }
 

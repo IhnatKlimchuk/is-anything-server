@@ -1,5 +1,5 @@
 ﻿<div class="text-center">
-    <h1 class="display-4">Check anything!</h1>
+    <h1 class="display-4">Read anything!</h1>
     <p style="font-size: 2.0em;">
         <span id="typed"></span>
     </p>
@@ -13,8 +13,8 @@
     <form id="read-form" autocomplete="off">
         <div class="container row" style="margin: 0; padding-bottom: 20px">
             <div class="col-md-6 offset-md-3 pb-3">
-                <input style="text-align: center" id="read-input" type="text" class="form-control" placeholder="Is this pigeon?">
-                <div id="read-feedback" class="valid-feedback"></div>
+                <input style="text-align: center" id="subject-predicate-input" type="text" class="form-control" placeholder="Is this pigeon?">
+                <div id="subject-predicate-feedback" class="valid-feedback"></div>
             </div>
             <div class="col-md-4 offset-md-4">
                 <button id="read-submit" type="submit" class="btn btn-primary">Check</button>
@@ -23,6 +23,6 @@
     </form>
     <div class="container">
         <h2 id="read-result" class="jumbotron-heading" hidden></h2>
-        <p id="override-text" class="lead text-muted" hidden>Outdated? Disagree? <a id="override-link" class="btn btn-primary my-2" asp-controller="Landing" asp-action="Write">Override!</a></p>
+        <p id="result-text" class="lead text-muted" hidden>Outdated? Disagree? <a id="result-link" class="btn btn-primary my-2" asp-controller="Landing" asp-action="Write">Override!</a></p>
     </div>
 </section>

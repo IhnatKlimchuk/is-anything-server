@@ -10,8 +10,10 @@ namespace IsAnythingServer.Controllers.Landing
             return View();
         }
 
-        public IActionResult Write()
+        public IActionResult Write([FromQuery] string subject, [FromQuery] string predicate)
         {
+            ViewData["subject"] = subject;
+            ViewData["predicate"] = predicate;
             return View();
         }
     }

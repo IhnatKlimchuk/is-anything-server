@@ -39,7 +39,7 @@ namespace IsAnythingServer.Controllers.Api
 
         [HttpPut("is")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RecordDTO))]
-        public IActionResult PutIsValue([FromQuery] PutRecordRequestDTO request)
+        public IActionResult PutIsValue([FromBody] PutRecordRequestDTO request)
         {
             if (!ModelState.IsValid)
             {

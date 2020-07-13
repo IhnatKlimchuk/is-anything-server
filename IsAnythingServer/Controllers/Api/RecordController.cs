@@ -20,7 +20,7 @@ namespace IsAnythingServer.Controllers.Api
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        [HttpGet("is")]
+        [HttpGet("record")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RecordDTO))]
         public IActionResult GetIsValue([FromQuery] GetRecordRequestDTO request)
         {
@@ -37,7 +37,7 @@ namespace IsAnythingServer.Controllers.Api
             });
         }
 
-        [HttpPut("is")]
+        [HttpPut("record")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RecordDTO))]
         public IActionResult PutIsValue([FromBody] PutRecordRequestDTO request)
         {

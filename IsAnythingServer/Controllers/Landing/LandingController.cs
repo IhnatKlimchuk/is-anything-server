@@ -5,7 +5,7 @@ namespace IsAnythingServer.Controllers.Landing
     [ApiExplorerSettings(IgnoreApi = true)]
     public class LandingController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Read()
         {
             return View();
         }

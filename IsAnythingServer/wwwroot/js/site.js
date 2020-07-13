@@ -1,7 +1,7 @@
 ﻿$(function () {
     if ($("#typed").length) {
         var typed = new Typed('#typed', {
-            strings: ["Is 13 thirteen?", "Is youtube down?", "Is habr.com awesome?", "Is this pigeon?", "Is 2020 over?", "Is this joke?"],
+            strings: ["Is 13 thirteen?", "Is youtube down?", "Is habr.com awesome?", "Is this a pigeon?", "Is 2020 over?", "Is this America?", "Is this a joke?"],
             loop: true,
             backSpeed: 50,
             typeSpeed: 40
@@ -79,7 +79,7 @@ $(function () {
             $("#read-submit").attr("disabled", true);
             $("#subject-predicate-input").attr("disabled", true);
             $.ajax({
-                url: "/api/is",
+                url: "/api/record",
                 type: "get",
                 data: data,
                 success: function (response) {
@@ -114,7 +114,7 @@ $(function () {
             $("#value-input").attr("disabled", true);
             $("#subject-predicate-input").attr("disabled", true);
             $.ajax({
-                url: "/api/is",
+                url: "/api/record",
                 type: "put",
                 contentType: 'application/json',
                 data: JSON.stringify(data),

@@ -46,7 +46,7 @@ namespace IsAnythingServer
 
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/.well-known")),
+                FileProvider = new PhysicalFileProvider(Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/.well-known")).FullName),
                 RequestPath = new PathString("/.well-known"),
                 ServeUnknownFileTypes = true // serve extensionless file
             });

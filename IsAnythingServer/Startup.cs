@@ -1,4 +1,4 @@
-using IsAnythingServer.Services;
+using IsAnythingServer.Stores;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +22,7 @@ namespace IsAnythingServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IDataStorage, InMemoryDataStorage>();
+            services.AddStores(Configuration);
             services
                 .AddControllersWithViews()
                 .AddJsonOptions(c => 
@@ -59,9 +59,7 @@ namespace IsAnythingServer
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Is anything api V1");
             });
 
-            
             app.UseRouting();
-
 
             app.UseEndpoints(endpoints =>
             {

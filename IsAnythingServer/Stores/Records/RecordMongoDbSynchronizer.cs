@@ -19,7 +19,7 @@ namespace IsAnythingServer.Stores.Records
                         .Text(document => document.Key.Predicate),
                     options: new CreateIndexOptions
                     {
-                        Name = "Subject-Predicate_TextIndex",
+                        Name = "subject-predicate_text-index",
                     }),
                 options: null,
                 cancellationToken: cancellationToken);

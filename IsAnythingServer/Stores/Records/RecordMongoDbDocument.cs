@@ -16,6 +16,6 @@ namespace IsAnythingServer.Stores.Records
         [BsonElement("statistics")]
         public Dictionary<string, RecordMongoDbStatistic> Statistics { get; set; }
 
-        public const string CollectionName = "Record";
+        public const string CollectionName = "record";
     }
 }

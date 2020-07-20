@@ -29,7 +29,7 @@ namespace IsAnythingServer.Controllers.Api
             {
                 return BadRequest(ModelState);
             }
-            var value = await _recordStore.GetRecordAsync(request.Subject, request.Predicate);
+            var value = await _recordStore.GetRecordAsync(request.Subject.ToLowerInvariant(), request.Predicate.ToLowerInvariant());
             return Ok(new RecordDTO
             {
                 Subject = request.Subject,
@@ -46,7 +46,7 @@ namespace IsAnythingServer.Controllers.Api
             {
                 return BadRequest(ModelState);
             }
-            var resultValue = await _recordStore.CreateOrUpdateRecordAsync(request.Subject, request.Predicate, request.Value);
+            var resultValue = await _recordStore.CreateOrUpdateRecordAsync(request.Subject.ToLowerInvariant(), request.Predicate.ToLowerInvariant(), request.Value);
             return Ok(new RecordDTO
             {
                 Subject = request.Subject,

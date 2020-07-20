@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace IsAnythingServer.Controllers.Api
@@ -46,7 +47,11 @@ namespace IsAnythingServer.Controllers.Api
             {
                 return BadRequest(ModelState);
             }
-            var resultValue = await _recordStore.CreateOrUpdateRecordAsync(request.Subject.ToLowerInvariant(), request.Predicate.ToLowerInvariant(), request.Value);
+            var resultValue = await _recordStore.CreateOrUpdateRecordAsync(
+                subject: request.Subject.ToLowerInvariant(),
+                predicate: request.Predicate.ToLowerInvariant(),
+                date: DateTime.UtcNow.Date.ToString("dd-MM-yyyy", DateTimeFormatInfo.InvariantInfo), 
+                value: request.Value);
             return Ok(new RecordDTO
             {
                 Subject = request.Subject,

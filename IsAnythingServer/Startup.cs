@@ -1,3 +1,4 @@
+using IsAnythingServer.Jobs;
 using IsAnythingServer.Stores;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +24,7 @@ namespace IsAnythingServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddStores(Configuration);
+            services.AddJobs(Configuration);
             services
                 .AddControllersWithViews()
                 .AddJsonOptions(c => 

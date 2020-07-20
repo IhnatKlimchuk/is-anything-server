@@ -1,3 +1,4 @@
+using IsAnythingServer.Jobs;
 using IsAnythingServer.Stores;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,7 +24,7 @@ namespace IsAnythingServer
                 })
                 .ConfigureServices(services =>
                 {
-                    //add jobs here
+                    services.AddHostedService<JobsScheduler>();
                 });
 
         private static async Task PrepareHostAsync(IHost host)

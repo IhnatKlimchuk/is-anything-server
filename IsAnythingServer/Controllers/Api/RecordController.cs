@@ -1,8 +1,9 @@
-﻿using IsAnythingServer.Services;
+﻿using IsAnythingServer.Stores.Records;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace IsAnythingServer.Controllers.Api
 {
@@ -10,25 +11,25 @@ namespace IsAnythingServer.Controllers.Api
     public class RecordController : ControllerBase
     {
         private readonly ILogger<RecordController> _logger;
-        private readonly IDataStorage _dataStorage;
+        private readonly IRecordStore _recordStore;
 
         public RecordController(
-            IDataStorage dataStorage,
+            IRecordStore recordStore,
             ILogger<RecordController> logger)
         {
-            _dataStorage = dataStorage ?? throw new ArgumentNullException(nameof(logger));
+            _recordStore = recordStore ?? throw new ArgumentNullException(nameof(recordStore));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpGet("record")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RecordDTO))]
-        public IActionResult GetIsValue([FromQuery] GetRecordRequestDTO request)
+        public async Task<IActionResult> GetRecordValueAsync([FromQuery] GetRecordRequestDTO request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var value = _dataStorage.ReadRecord(request.Subject, request.Predicate);
+            var value = await _recordStore.GetRecordAsync(request.Subject, request.Predicate);
             return Ok(new RecordDTO
             {
                 Subject = request.Subject,
@@ -39,13 +40,13 @@ namespace IsAnythingServer.Controllers.Api
 
         [HttpPut("record")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RecordDTO))]
-        public IActionResult PutIsValue([FromBody] PutRecordRequestDTO request)
+        public async Task<IActionResult> PutRecordValueAsync([FromBody] PutRecordRequestDTO request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var resultValue = _dataStorage.WriteRecord(request.Subject, request.Predicate, request.Value);
+            var resultValue = await _recordStore.CreateOrUpdateRecordAsync(request.Subject, request.Predicate, request.Value);
             return Ok(new RecordDTO
             {
                 Subject = request.Subject,

@@ -17,7 +17,7 @@ namespace IsAnythingServer.Controllers.Landing
             return View();
         }
 
-        public IActionResult ClientExample()
+        public IActionResult Explore()
         {
             return View();
         }

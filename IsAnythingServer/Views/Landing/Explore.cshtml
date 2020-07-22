@@ -14,10 +14,9 @@
         var element = document.getElementById("js-client-playground");
         var innerText = element.firstChild;
         var notebook = RunKit.createNotebook({
-            // the parent element for the new notebook
             element: document.getElementById("js-client-playground"),
-            // specify the source of the notebook
             source: "//get is-anything-client from npm\nvar is = require(\"is-anything-client\");\n\nvar result = {\n\t\"Is 2020 over?\": await is(2020).over()\n};",
+            nodeVersion: "14.x.x",
             onLoad: () => innerText.remove()
         })
     </script>

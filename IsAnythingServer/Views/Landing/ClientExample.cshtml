@@ -1,0 +1,31 @@
+﻿<div class="text-center">
+    <h1 class="display-4">Explore JS client</h1>
+</div>
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <p class="lead">Try is-anything-client in the playground below</p>
+    </div>
+
+    <div id="js-client-playground">Loading playground...</div>
+
+    <script src="https://embed.runkit.com"></script>
+    <script>
+        var element = document.getElementById("js-client-playground");
+        var innerText = element.firstChild;
+        var notebook = RunKit.createNotebook({
+            // the parent element for the new notebook
+            element: document.getElementById("js-client-playground"),
+            // specify the source of the notebook
+            source: "//get is-anything-client from npm\nvar is = require(\"is-anything-client\");\n\nvar result = {\n\t\"Is 2020 over?\": await is(2020).over()\n};",
+            onLoad: () => innerText.remove()
+        })
+    </script>
+
+    <div class="container">
+        <p class="lead d-inline">See project on <a href="https://www.npmjs.com/package/is-anything-client">npmjs.com</a></p>
+        <a href="https://www.npmjs.com/package/is-anything-client">
+            <img src="https://img.shields.io/npm/v/is-anything-client?color=green&style=for-the-badge" />
+        </a>
+    </div>
+</section>

@@ -67,7 +67,8 @@ namespace IsAnythingServer
             {
                 endpoints.MapControllerRoute(
                      name: "default",
-                     pattern: "{controller=Landing}/{action=Read}/{id?}");
+                     pattern: "{action=Read}/{id?}",
+                     defaults: new { controller = "Landing" });
             });
         }
     }

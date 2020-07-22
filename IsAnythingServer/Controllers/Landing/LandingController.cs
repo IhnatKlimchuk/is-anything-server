@@ -16,5 +16,10 @@ namespace IsAnythingServer.Controllers.Landing
             ViewData["predicate"] = predicate;
             return View();
         }
+
+        public IActionResult ClientExample()
+        {
+            return View();
+        }
     }
 }
